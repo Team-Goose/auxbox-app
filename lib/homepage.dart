@@ -1,5 +1,6 @@
 import 'package:auxbox/backend.dart';
 import 'package:auxbox/devices.dart';
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:spotify/spotify_io.dart';
 
@@ -85,11 +86,16 @@ class _HomePageState extends State<HomePage> {
   }
 
   void _updateCurrentPlaylist() {
-    backend.getCurrentPlaylist().then((playlist) {
+    backend.getCurrentPlaylist().then((response) {
       setState(() {
-        queue = (playlist as Playlist).songs.map((song) {
-          ListTile(title: Text(song.name), subtitle: Text(song.artists.toString()),);
-        }).toList();
+        print(response.body);
+        // var paging = json.decode(response.body);
+        // queue = paging["items"].map(((song) {
+        //   ListTile(
+        //     title: Text(song["name"]),
+        //     subtitle: Text(song[Artists].toString()),
+        //   );
+        // })).toList();
       });
     });
   }

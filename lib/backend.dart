@@ -43,8 +43,8 @@ class Backend {
     return await http.post('192.168.4.1/setwifi', body: ssid + "," + password);
   }
 
-  Future<dynamic> getCurrentPlaylist() async {
-    // return await http.get('http://192.168.43.112/getplaylist');
+  Future<http.Response> getCurrentPlaylist() async {
+    return await http.get('http://192.168.43.112/getplaylist');
   }
 
   Future<http.Response> addToPlaylist(String id) async {

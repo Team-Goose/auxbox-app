@@ -41,6 +41,7 @@ class _SearchState extends State<Search> {
             trailing: Icon(song.added ? Icons.check : Icons.add),
             onTap: () {setState(() {
               song.added = true;
+              print(song.track.id);
               backend.addToPlaylist(song.track.id);
             });},
             subtitle: Text(
