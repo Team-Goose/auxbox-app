@@ -9,6 +9,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+<<<<<<< Updated upstream
   Backend backend = Backend();
   List<Widget> songs = [];
 
@@ -17,6 +18,9 @@ class _HomePageState extends State<HomePage> {
     super.initState();
     backend.init().then((string) => _updateCurrentPlaylist());
   }
+=======
+  List<Widget> queue = [];
+>>>>>>> Stashed changes
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +69,11 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       body: ListView(
+<<<<<<< Updated upstream
         children: <Widget>[],
+=======
+        children: queue,
+>>>>>>> Stashed changes
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => setState(() {
