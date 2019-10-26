@@ -1,4 +1,6 @@
+import 'package:auxbox/devices.dart';
 import 'package:auxbox/homepage.dart';
+import 'package:auxbox/settings.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -13,6 +15,10 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: HomePage(),
+      routes: <String, WidgetBuilder> {
+        '/devices': (BuildContext context) => Devices(),
+        '/settings': (BuildContext context) => Settings(),
+      },
     );
   }
 }

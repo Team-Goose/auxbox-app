@@ -1,3 +1,4 @@
+import 'package:auxbox/devices.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -32,11 +33,14 @@ class _HomePageState extends State<HomePage> {
             ListTile(
               title: Text("Devices"),
               onTap: () {
-                // Navigator.push(context, route);
+                Navigator.pushNamed(context, '/devices');
               },
             ),
             ListTile(
               title: Text("Settings"),
+              onTap: () {
+                Navigator.pushNamed(context, '/settings');
+              },
             )
           ],
         ),
