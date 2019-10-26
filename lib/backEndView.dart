@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'backend.dart';
 
-class backEndView extends StatefulWidget {
+class BackEndView extends StatefulWidget {
   @override
-  backEndView_State createState() => backEndView_State();
+  BackEndViewState createState() => BackEndViewState();
 }
 
-class backEndView_State extends State<backEndView> {
+class BackEndViewState extends State<BackEndView> {
   Backend backend = Backend();
   List<Widget> songs = [];
 
