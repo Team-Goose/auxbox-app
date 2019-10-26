@@ -1,5 +1,5 @@
 import 'package:flutter/services.dart' show rootBundle;
-import 'package:http/http.dart';
+import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:spotify/spotify_io.dart';
 
@@ -17,7 +17,7 @@ class Backend {
   Future<List<TrackSimple>> searchSong(String title, int limit) async {
     var song = TrackSimple();
     song.name = "empty";
-    if (spotify == null) {
+    if (spotify == null || title == "") {
       return [song];
     }
     var search = await Search(spotify)
@@ -30,7 +30,11 @@ class Backend {
     return search.expand((pages) => pages.items).whereType<TrackSimple>().toList();
   }
 
-  Future<List<dynamic>> getWifi() {
-    
+  Future<dynamic> getWifi() async {
+    return await http.get('192.168.4.1/getwifi');
+  }
+
+  Future<http.Response> setWifi(String ssid, String password) async {
+    return await http.post('192.168.4.1/setwifi', body: {ssid + ","  + password});
   }
 }
