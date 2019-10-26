@@ -10,7 +10,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   Backend backend = Backend();
-  List<Widget> songs = [];
+  List<Widget> queue = [];
 
   @override
   void initState() {
@@ -33,6 +33,14 @@ class _HomePageState extends State<HomePage> {
             );
           },
         ),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.refresh),
+            onPressed: () {
+              _updateCurrentPlaylist();
+            },
+          )
+        ],
         title: const Text("AuxBox"),
         centerTitle: true,
       ),
@@ -65,7 +73,7 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       body: ListView(
-        children: songs,
+        children: queue,
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => setState(() {
@@ -79,7 +87,7 @@ class _HomePageState extends State<HomePage> {
   void _updateCurrentPlaylist() {
     backend.getCurrentPlaylist().then((playlist) {
       setState(() {
-        songs = (playlist as Playlist).songs.map((song) {
+        queue = (playlist as Playlist).songs.map((song) {
           ListTile(title: Text(song.name), subtitle: Text(song.artists.toString()),);
         }).toList();
       });
