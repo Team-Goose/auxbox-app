@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: backEndView(),
+      home: HomePage(),
       routes: <String, WidgetBuilder> {
         '/devices': (BuildContext context) => Devices(),
         '/settings': (BuildContext context) => Settings(),
