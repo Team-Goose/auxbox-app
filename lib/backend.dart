@@ -1,4 +1,5 @@
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:http/http.dart';
 import 'dart:convert';
 import 'package:spotify/spotify_io.dart';
 
@@ -10,7 +11,6 @@ class Backend {
     var keyMap = json.decode(string);
     var credentials = new SpotifyApiCredentials(keyMap['id'], keyMap['secret']);
     spotify = new SpotifyApi(credentials);
-    print(spotify.toString());
     });
   }
 
@@ -28,5 +28,9 @@ class Backend {
       return null;
     }
     return search.expand((pages) => pages.items).whereType<TrackSimple>().toList();
+  }
+
+  Future<List<dynamic>> getWifi() {
+    
   }
 }
