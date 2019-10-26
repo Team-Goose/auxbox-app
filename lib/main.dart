@@ -1,3 +1,4 @@
+import 'package:auxbox/backEndView.dart';
 import 'package:auxbox/devices.dart';
 import 'package:auxbox/homepage.dart';
 import 'package:auxbox/settings.dart';
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomePage(),
+      home: backEndView(),
       routes: <String, WidgetBuilder> {
         '/devices': (BuildContext context) => Devices(),
         '/settings': (BuildContext context) => Settings(),

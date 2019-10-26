@@ -5,18 +5,16 @@ import 'package:spotify/spotify_io.dart';
 class Backend {
   SpotifyApi spotify;
 
-  Future<bool> init() async {
-    
-    var keyJson = await rootBundle.loadString('assets/authCodes.json');
-    var keyMap = json.decode(keyJson);
+  Future<String> init() async {
+    return await rootBundle.loadString('assets/authCodes.json').then((string) { ;
+    var keyMap = json.decode(string);
     var credentials = new SpotifyApiCredentials(keyMap['id'], keyMap['secret']);
     spotify = new SpotifyApi(credentials);
     print(spotify.toString());
-    return true;
+    });
   }
 
   Future<List<TrackSimple>> searchSong(String title, int limit) async {
-    //print(spotify.toString());
     var song = TrackSimple();
     song.name = "empty";
     if (spotify == null) {
