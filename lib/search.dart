@@ -16,7 +16,7 @@ class Search extends StatefulWidget {
 class _SearchState extends State<Search> {
   Backend backend = Backend();
   List<Track> songs = [];
-  String title = "big enough";
+  String title = "africa";
   final _textFieldKey = GlobalKey<FormState>();
 
   @override
@@ -38,7 +38,7 @@ class _SearchState extends State<Search> {
         .map(
           (song) => ListTile(
             title: Text(song.track.name),
-            trailing: Icon(song.added ? Icons.favorite : Icons.favorite_border),
+            trailing: Icon(song.added ? Icons.check : Icons.add),
             onTap: () {setState(() {
               song.added = true;
               backend.addToPlaylist(song.track.id);
@@ -63,7 +63,7 @@ class _SearchState extends State<Search> {
           child: TextFormField(
             onSaved: (string) => title = string,
             decoration: InputDecoration(
-                border: OutlineInputBorder(), labelText: "Search"),
+              labelText: "Search"),
           )),
       RaisedButton(
           child: Text("Search"),

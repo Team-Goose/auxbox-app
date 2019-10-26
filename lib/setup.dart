@@ -20,13 +20,34 @@ class _SetupState extends State<Setup> {
   }
 }
 
+_setUpSteps() async {
+  var listAvailableWifi = WifiConfiguration.getWifiList();
+  
+}
+
 _setupStepController() {
-  return Row(
+  bool step1 = false;
+  bool step2 = false;
+  bool step3 = false;
+  
+  _setUpSteps();
+
+  return Container(child: ListView(
     children: <Widget>[
-      Spacer(),
-      Center(child: Text("To set up your AuxBox, please turn it on and connect to the AuxBox WiFi network on your phone.")),
-      Center(child: Text("Your current wifi network is: "),),
-      Spacer(),
-    ]
+      Card(child: ListTile(
+        title: Text("Step 1: Plug in your AuxBox and keep your phone nearby"),
+        trailing: Icon(step1 ? Icons.check : Icons.clear),
+      )),
+      Card(child: ListTile(
+        title: Text("Step 2: Select a Wifi network to connect your AuxBox to"),
+        trailing: Icon(step2 ? Icons.check : Icons.clear),
+      )),
+      Card(child: ListTile(
+        title: Text("Step 3: Log into Spotify"),
+        trailing: Icon(step3 ? Icons.check : Icons.clear),
+      )),
+    ],
+  ),
+  margin: EdgeInsets.all(8.0),
   );
 }
