@@ -11,20 +11,31 @@ class backEndView_State extends State<backEndView> {
 
   @override
   void initState() {
-    backend.init();
     super.initState();
+    backend.init();
   }
 
   @override
   Widget build(BuildContext context) {
-    var songs;
+    List<Widget> songs;
+    backend.searchSong("africa", 10).then((newSongs) {
+      songs = newSongs
+          .map((song) => ListTile(
+                title: Text(song.name),
+              ))
+          .toList();
+      songs = ListTile.divideTiles(
+        context: context,
+        tiles: songs,
+      ).toList();
+    });
     return Scaffold(
       appBar: AppBar(
-         title: const Text("AuxBox"),
+        title: const Text("AuxBox"),
         centerTitle: true,
       ),
       body: ListBody(
-        
+        children: songs,
       ),
     );
   }

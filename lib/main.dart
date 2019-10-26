@@ -1,3 +1,4 @@
+import 'package:auxbox/backEndView.dart';
 import 'package:auxbox/homepage.dart';
 import 'package:flutter/material.dart';
 
@@ -12,7 +13,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomePage(),
+      home: backEndView(),
     );
   }
 }
