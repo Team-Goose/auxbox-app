@@ -1,7 +1,9 @@
 import 'package:auxbox/backEndView.dart';
 import 'package:auxbox/devices.dart';
 import 'package:auxbox/homepage.dart';
+import 'package:auxbox/search.dart';
 import 'package:auxbox/settings.dart';
+import 'package:auxbox/setup.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -19,6 +21,8 @@ class MyApp extends StatelessWidget {
       routes: <String, WidgetBuilder> {
         '/devices': (BuildContext context) => Devices(),
         '/settings': (BuildContext context) => Settings(),
+        '/search': (BuildContext context) => Search(),
+        '/setup': (BuildContext context) => Setup(),
       },
     );
   }

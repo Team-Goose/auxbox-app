@@ -48,7 +48,7 @@ class _HomePageState extends State<HomePage> {
       body: ListView(),
       floatingActionButton: FloatingActionButton(
         onPressed: () => setState(() {
-          
+          Navigator.pushNamed(context, '/search');
         }),
         child: Icon(Icons.search),
       ),
