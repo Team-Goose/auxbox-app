@@ -1,5 +1,7 @@
+import 'package:auxbox/backend.dart';
 import 'package:auxbox/devices.dart';
 import 'package:flutter/material.dart';
+import 'package:spotify/spotify_io.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -7,6 +9,15 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  Backend backend = Backend();
+  List<Widget> songs = [];
+
+  @override
+  void initState() {
+    super.initState();
+    backend.init().then((string) => _updateCurrentPlaylist());
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,7 +26,9 @@ class _HomePageState extends State<HomePage> {
           builder: (BuildContext context) {
             return IconButton(
               icon: const Icon(Icons.menu),
-              onPressed: () { Scaffold.of(context).openDrawer(); },
+              onPressed: () {
+                Scaffold.of(context).openDrawer();
+              },
               tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
             );
           },
@@ -51,7 +64,9 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
-      body: ListView(),
+      body: ListView(
+        children: <Widget>[],
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => setState(() {
           Navigator.pushNamed(context, '/search');
@@ -60,4 +75,25 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
+
+  void _updateCurrentPlaylist() {
+    backend.getCurrentPlaylist().then((playlist) {
+      setState(() {
+        songs = (playlist as Playlist).songs.map((song) {
+          ListTile(title: Text(song.name), subtitle: Text(song.artists.toString()),);
+        }).toList();
+      });
+    });
+  }
+}
+
+class Playlist {
+  List<Song> songs;
+  Playlist(this.songs);
+}
+
+class Song {
+  String name;
+  List<String> artists;
+  Song(this.name, this.artists);
 }

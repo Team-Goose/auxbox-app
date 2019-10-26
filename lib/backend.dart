@@ -7,10 +7,12 @@ class Backend {
   SpotifyApi spotify;
 
   Future<String> init() async {
-    return await rootBundle.loadString('assets/authCodes.json').then((string) { ;
-    var keyMap = json.decode(string);
-    var credentials = new SpotifyApiCredentials(keyMap['id'], keyMap['secret']);
-    spotify = new SpotifyApi(credentials);
+    return await rootBundle.loadString('assets/authCodes.json').then((string) {
+      ;
+      var keyMap = json.decode(string);
+      var credentials =
+          new SpotifyApiCredentials(keyMap['id'], keyMap['secret']);
+      spotify = new SpotifyApi(credentials);
     });
   }
 
@@ -27,7 +29,10 @@ class Backend {
     if (search == null) {
       return null;
     }
-    return search.expand((pages) => pages.items).whereType<TrackSimple>().toList();
+    return search
+        .expand((pages) => pages.items)
+        .whereType<TrackSimple>()
+        .toList();
   }
 
   Future<dynamic> getWifi() async {
@@ -35,16 +40,16 @@ class Backend {
   }
 
   Future<http.Response> setWifi(String ssid, String password) async {
-    return await http.post('192.168.4.1/setwifi', body: ssid + ","  + password);
+    return await http.post('192.168.4.1/setwifi', body: ssid + "," + password);
   }
 
   Future<dynamic> getCurrentPlaylist() async {
-
+    // return await http.get('http://192.168.43.112/getplaylist');
   }
 
   Future<http.Response> addToPlaylist(String id) async {
-    return await http.post('192.168.4.1/addtoplaylist', body: id);
+    return await http
+        .post('http://192.168.43.112/addtoplaylist', body: id)
+        .catchError((err) => err.toString());
   }
-
-
 }
